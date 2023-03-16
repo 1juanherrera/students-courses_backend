@@ -25,6 +25,19 @@ test('GET /students should return all the students', async() => {
     expect(res.body[0].courses).toBeFined()
 })
 
+test('POST /students/:id/courses should set the student courses', async() => {
+    const course = {
+        name: "Programacion",
+        credits: 3
+    }
+    const res = await request(app)
+        .post(`/students/${studentId}/courses`)
+        .send([course.id])
+        await course.destroy();
+    expect(res.status).toBe(200);
+    expect(res.body).toHaveLength(1);
+})
+
 test('UPDATE /students should update one student', async() => {
     const body = {
         firstName: "Denis",
